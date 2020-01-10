@@ -260,7 +260,16 @@ export default class QRCodeScanner extends Component {
     } else if (!isAuthorizationChecked) {
       return pendingAuthorizationView;
     } else {
-      return notAuthorizedView;
+      return <Camera
+      type={cameraType}
+      style={[styles.camera, this.props.cameraStyle]}
+      onBarCodeRead={this._handleBarCodeRead.bind(this)}
+      flashMode={this.state.flashMode}
+      captureAudio={false}
+      {...this.props.cameraProps}
+    >
+      {this._renderCameraMarker()}
+    </Camera>;
     }
   }
 
